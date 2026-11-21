@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossos Serviços | Salão Bella</title>
+  <link rel="shortcut icon" href="img_favicon/secador.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+  /* Fundo e estrutura geral da seção */
+  .secao-servicos {
+    padding: 70px 6%;
+    background: linear-gradient(135deg, #fdf8f5 0%, #f5ebe4 100%);
+  }
+
+  .container-servicos {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .cabecalho-secao {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 48px;
+  }
+
+  .subtitulo-secao {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    color: #8b4c5c;
+    margin-bottom: 8px;
+  }
+
+  .cabecalho-secao h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(28px, 4vw, 38px);
+    color: #2b221a;
+    margin-bottom: 14px;
+  }
+
+  .divisor {
+    width: 55px;
+    height: 3px;
+    background: linear-gradient(to right, #8b4c5c, #d7b892);
+    margin: 0 auto 14px;
+    border-radius: 2px;
+  }
+
+  .texto-centro {
+    font-size: 15px;
+    color: #665c54;
+    line-height: 1.6;
+  }
+
+  /* Grid de 3 colunas no computador e responsivo no celular */
+  .cards-servicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 26px;
+  }
+
+  /* Cartão de Serviço */
+  .card-servico-pro {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #ead8cb;
+    border-radius: 18px;
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 26px rgba(139, 76, 92, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .card-servico-pro:hover {
+    transform: translateY(-6px);
+    border-color: #c8a376;
+    box-shadow: 0 16px 34px rgba(139, 76, 92, 0.14);
+  }
+
+  /* Borda sutil extra nos cards em destaque */
+  .card-destaque {
+    border: 1.5px solid #d7b892;
+  }
+
+  /* Etiqueta "Mais pedido" / "Especialidade" */
+  .selo-servico {
+    position: absolute;
+    top: -12px;
+    right: 22px;
+    background: linear-gradient(to right, #8b4c5c, #a56473);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1.5px solid #e5c69d;
+    box-shadow: 0 4px 10px rgba(139, 76, 92, 0.2);
+  }
+
+  /* Linha superior do card: Ícone + Tempo médio */
+  .topo-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .icone-servico {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f9efe9, #f1dfd3);
+    color: #8b4c5c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .tempo-servico {
+    font-size: 12px;
+    font-weight: 600;
+    color: #7a6a5e;
+    background-color: #faf4f0;
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 1px solid #ede0d6;
+  }
+
+  .card-servico-pro h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 21px;
+    color: #2b221a;
+    margin-bottom: 10px;
+  }
+
+  .card-servico-pro p {
+    font-size: 14px;
+    color: #665c54;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex-grow: 1; /* Empurra o preço e o botão sempre para a base do card */
+  }
+
+  /* Rodapé interno do card (Preço + Botão) */
+  .rodape-card {
+    padding-top: 18px;
+    border-top: 1px solid #f2e6de;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .bloco-preco {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .bloco-preco small {
+    font-size: 12px;
+    color: #85766b;
+  }
+
+  .preco-servico {
+    font-size: 20px;
+    font-weight: 700;
+    color: #8b4c5c;
+  }
+
+  .botao-card {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #8b4c5c;
+    background-color: #fdf6f2;
+    border: 1.5px solid #d7b892;
+    transition: all 0.25s ease;
+  }
+
+  .botao-card:hover {
+    background: linear-gradient(to right, #8b4c5c, #a56473);
+    color: #ffffff;
+    border-color: #8b4c5c;
+  }
+
+  /* Observação e Banner de Chamada Inferior */
+  .rodape-catalogo {
+    margin-top: 42px;
+  }
+
+  .observacao-preco {
+    text-align: center;
+    font-size: 12.5px;
+    color: #7d6e63;
+    margin-bottom: 32px;
+  }
+
+  .cta-catalogo {
+    background: linear-gradient(to right, #8b4c5c, #a56473);
+    border: 2px solid #e5c69d;
+    border-radius: 18px;
+    padding: 32px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+gap: 20px;
+color: #ffffff;
+box-shadow: 0 12px 28px rgba(139, 76, 92, 0.18);
+}
+.cta-catalogo h3 {
+font-family: 'Playfair Display', Georgia, serif;
+font-size: 24px;
+margin-bottom: 6px;
+}
+.cta-catalogo p {
+font-size: 14px;
+color: #f6e7ea;
+}
+.botao-principal-salao {
+text-decoration: none;
+background-color: #ffffff;
+color: #8b4c5c;
+padding: 14px 28px;
+border-radius: 30px;
+font-size: 14px;
+font-weight: 700;
+border: 2px solid #e5c69d;
+white-space: nowrap;
+transition: transform 0.25s ease;
+}
+.botao-principal-salao:hover {
+transform: translateY(-2px);
+}
+@media (max-width: 680px) {
+.cta-catalogo {
+text-align: center;
+justify-content: center;
+padding: 26px 20px;
+}
+}
+</style>
+</head>
+  <header class="topo">
+  <div class="caixa-logo">
+    <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: white;">
+      <!-- Seu ícone SVG ou imagem aqui -->
+      <div class="nome-salao">
+        <h1>Salão Bella</h1>
+        <p>Beleza & Cuidados Capilares</p>
+      </div>
+    </a>
+  </div>
+
+  <nav class="menu">
+  <a href="index.html">Início</a>
+  <a href="index.html#sobre">Sobre</a>
+  <a href="#">Serviços</a>
+  <a href="index.html#galeria">Galeria</a>
+  <a href="index.html#contato">Contato</a>
+  <a href="login.html">Login</a>
+  <a href="new.html">Cadastro</a>
+  <a href="#contato">Contato</a>
+  <a href="index.html#agendamento" class="botao-menu">Agendamento</a>
+</nav>
+
+</header>
+
+
+  <!-- CATÁLOGO COMPLETO DE SERVIÇOS ) -->
+<main>
+  <section class="secao-servicos" id="serviços">
+    <div class="container-servicos">
+      <div class="cabecalho-secao">
+        <p class="subtitulo-secao">CATÁLOGO COMPLETO</p>
+        <h2>Nossos serviços</h2>
+        <div class="divisor"></div>
+        <p class="texto-centro">Escolha o cuidado ideal para realçar a beleza, o brilho e a saúde dos seus cabelos.</p>
+      </div>
+
+      <div class="cards-servicos">
+
+        <!-- Serviço 1 (Com Selo de Destaque) -->
+        <article class="card-servico-pro card-destaque">
+          <span class="selo-servico">Mais pedido</span>
+          <div class="topo-card">
+            <div class="icone-servico">✂</div>
+            <span class="tempo-servico">⏱ 45 min</span>
+          </div>
+          <h3>Corte feminino</h3>
+          <p>Corte personalizado de acordo com o formato do seu rosto, visagismo e finalização profissional.</p>
+          <div class="rodape-card">
+            <div class="bloco-preco">
+              <small>Investimento</small>
+              <span class="preco-servico">R$ 50,00</span>
+            </div>
+            <a href="index.html#agendamento" class="botao-card">Agendar este serviço</a>
+          </div>
+        </article>
+
+        <!-- Serviço 2 -->
+        <article class="card-servico-pro">
+          <div class="topo-card">
+            <div class="icone-servico">♡</div>
+            <span class="tempo-servico">⏱ 50 min</span>
+          </div>
+          <h3>Hidratação profunda</h3>
+          <p>Reposição hídrica e nutritiva para devolver a maciez, o balanço natural e o toque sedoso aos fios.</p>
+          <div class="rodape-card">
+            <div class="bloco-preco">
+              <small>Investimento</small>
+              <span class="preco-servico">R$ 65,00</span>
+            </div>
+            <a href="index.html#agendamento" class="botao-card">Agendar este serviço</a>
+          </div>
+        </article>
+
+        <!-- Serviço 3 (Com Selo de Destaque) -->
+        <article class="card-servico-pro card-destaque">
+          <span class="selo-servico">Especialidade</span>
+          <div class="topo-card">
+            <div class="icone-servico">✧</div>
+            <span class="tempo-servico">⏱ 2h a 3h</span>
+          </div>
+          <h3>Coloração e tonalização</h3>
+          <p>Aplicação de coloração personalizada com produtos de alta performance para renovar a cor sem agredir.</p>
+          <div class="rodape-card">
+            <div class="bloco-preco">
+              <small>A partir de</small>
+              <span class="preco-servico">R$ 130,00</span>
+            </div>
+            <a href="index.html#agendamento" class="botao-card">Agendar este serviço</a>
+          </div>
+        </article>
+
+        <!-- Serviço 4 -->
+        <article class="card-servico-pro">
+          <div class="topo-card">
+            <div class="icone-servico">❖</div>
+            <span class="tempo-servico">⏱ 40 min</span>
+          </div>
+          <h3>Escova modelada</h3>
+          <p>Alinhamento, volume controlado e finalização duradoura com proteção térmica e brilho intenso.</p>
+          <div class="rodape-card">
+            <div class="bloco-preco">
+              <small>Investimento</small>
+              <span class="preco-servico">R$ 45,00</span>
+            </div>
+            <a href="index.html#agendamento" class="botao-card">Agendar este serviço</a>
+          </div>
+        </article>
+
+        <!-- Serviço 5 -->
+        <article class="card-servico-pro">
+          <div class="topo-card">
+            <div class="icone-servico">♛</div>
+            <span class="tempo-servico">⏱ 1h 30min</span>
+          </div>
+          <h3>Penteado social e festas</h3>
+          <p>Penteados clássicos ou modernos com acabamento impecável para formaturas, casamentos e eventos.</p>
+          <div class="rodape-card">
+            <div class="bloco-preco">
+              <small>A partir de</small>
+              <span class="preco-servico">R$ 90,00</span>
+            </div>
+            <a href="index.html#agendamento" class="botao-card">Agendar este serviço</a>
+          </div>
+        </article>
+
+        <!-- Serviço 6 -->
+        <article class="card-servico-pro">
+          <div class="topo-card">
+            <div class="icone-servico">✿</div>
+            <span class="tempo-servico">⏱ 1h</span>
+          </div>
+          <h3>Reconstrução capilar</h3>
+          <p>Tratamento intensivo com aminoácidos e queratina para recuperar a força e elasticidade de fios fragilizados.</p>
+          <div class="rodape-card">
+            <div class="bloco-preco">
+              <small>Investimento</small>
+              <span class="preco-servico">R$ 85,00</span>
+            </div>
+            <a href="index.html#agendamento" class="botao-card">Agendar este serviço</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Faixa de Aviso e Chamada Final -->
+      <div class="rodape-catalogo">
+        <p class="observacao-preco">
+          * Valores de referência. O orçamento exato pode variar conforme o comprimento, volume e avaliação presencial dos fios.
+        </p>
+
+        <div class="cta-catalogo">
+          <div>
+            <h3>Pronta para transformar seu visual?</h3>
+            <p>Crie sua conta gratuita para escolher o melhor dia, horário e profissional.</p>
+          </div>
+          <a href="new.html" class="botao-principal-salao">Cadastre-se para agendar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<body>
+
+  
+  <!-- RODAPÉ COMERCIAL -->
+  <footer class="rodape" id="contato">
+    <div class="rodape-conteudo">
+      <div class="rodape-coluna">
+        <h3>Salão Bella</h3>
+        <p>Beleza, autoestima e cuidado em cada detalhe. Um espaço pensado especialmente para realçar o melhor de você.</p>
+      </div>
+
+      <div class="rodape-coluna">
+        <h4>Horário de Atendimento</h4>
+        <p>Segunda a Sexta: 09h às 19h</p>
+        <p>Sábado: 08h30 às 18h</p>
+        <p class="fechado">Domingo: Fechado</p>
+      </div>
+
+      <div class="rodape-coluna">
+        <h4>Contato e Localização</h4>
+        <p>📍 Av. Principal, Quadra 10, Loja 02 - Centro</p>
+        <p>📱 WhatsApp: (61) 99999-9999</p>
+        <p>📸 Instagram: @salaobella.oficial</p>
+      </div>
+    </div>
+
+    <div class="rodape-base">
+      <p>© 2026 Salão Bella — Todos os direitos reservados.</p>
+      <p class="desenvolvedor">Desenvolvido por <strong>Marina Reis</strong></p>
+    </div>
+  </footer>
+
+</body>
+</html>
